@@ -1,10 +1,12 @@
 function getCard() {
+  //Get all cards for the Trello board.
   Trello.get("boards/59166d6e65974e2250d8c1c3/cards", function(cards) {
     var data = [];
     var name = [];
     var desc = [];
     var label = [];
 
+    //Pull the name, description, and label fields from each card and save in data array.
     for (let i = 0; i < cards.length; i++) {
       name[i] = cards[i].name;
       desc[i] = cards[i].desc;
@@ -12,11 +14,14 @@ function getCard() {
       data[i] = [name[i], desc[i], label[i]];
       //console.log(data);
     }
-    console.log(data);
+    //console.log(data);
+
+    //Build DataTable on page load from the data array
     $(document).ready(function() {
         $('#example').DataTable( {
           paging: false,
           ordering: true,
+          //order by status then name
           orderFixed: [[2, "asc"], [0, "asc"]],
           info: false,
           searching: false,
@@ -26,6 +31,7 @@ function getCard() {
               { title: "Description" },
               { title: "Status" }
           ]
+          //colors the status cell based on status text
           ,"columnDefs": [ {
               "targets": 2,
               "createdCell": function (td, cellData, rowData, row, col) {
@@ -33,6 +39,8 @@ function getCard() {
                   $(td).css('background-color', 'pink')
                 } else if (cellData === "Non-Critical"){
                   $(td).css('background-color', '#ffffbf')
+                } else if (cellData === "Testing"){
+                  $(td).css('background-color', '#add8e6')
                 } else {
                   $(td).css('background-color', '#e7ffe7')
                 }
