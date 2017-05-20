@@ -1,33 +1,46 @@
-// var apiSettings = {
-//     "async": true,
-//     "crossDomain": true,
-//     "url": "https://api.trello.com/1/cards/59166dc10cf965066a06bae8",
-//     "type": "GET"
-// };
-
-var apiSettings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://api.trello.com/1/lists/59166dbbb5adda80877f2257/cards",
-    "type": "GET"
-};
-
 function getCard() {
-  $.ajax(apiSettings).done(function(response) {
-    var name = "";
-    var desc = "";
-    var label = "";
+  Trello.get("boards/59166d6e65974e2250d8c1c3/cards", function(cards) {
+    var data = [];
+    var name = [];
+    var desc = [];
+    var label = [];
 
-    //TODO: Loop through each response array item
-    name = response[1].name;
-    desc = response[1].desc;
-    label = response[1].labels[0].color;
-
-    console.log(response.length);
-    console.log("Name: " + name);
-    console.log("Description: " + desc);
-    console.log("Color: " + label);
-  })
-}
+    for (let i = 0; i < cards.length; i++) {
+      name[i] = cards[i].name;
+      desc[i] = cards[i].desc;
+      label[i] = cards[i].labels[0].name;
+      data[i] = [name[i], desc[i], label[i]];
+      //console.log(data);
+    }
+    console.log(data);
+    $(document).ready(function() {
+        $('#example').DataTable( {
+          paging: false,
+          ordering: true,
+          orderFixed: [[2, "asc"], [0, "asc"]],
+          info: false,
+          searching: false,
+          data: data,
+          columns: [
+              { title: "Name" },
+              { title: "Description" },
+              { title: "Status" }
+          ]
+          ,"columnDefs": [ {
+              "targets": 2,
+              "createdCell": function (td, cellData, rowData, row, col) {
+                if ( cellData === "Down" ) {
+                  $(td).css('background-color', 'pink')
+                } else if (cellData === "Non-Critical"){
+                  $(td).css('background-color', '#ffffbf')
+                } else {
+                  $(td).css('background-color', '#e7ffe7')
+                }
+              }
+            }]
+        });
+    });
+  });
+};
 
 getCard();
