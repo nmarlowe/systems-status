@@ -1,5 +1,6 @@
 //IDEA: Add links on each row to the Trello card using the returned ShortURL field
-//IDEA: Use checklists to show multiple open issues. See OMS card. 
+//IDEA: Use checklists to show multiple open issues. See OMS card.
+//TODO: Rename repo to something without Trello in it (TrellStats, System Status)
 
 function getCard() {
   //Get all cards for the Trello board.
