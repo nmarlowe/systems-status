@@ -1,3 +1,6 @@
+//IDEA: Add links on each row to the Trello card using the returned ShortURL field
+//IDEA: Use checklists to show multiple open issues. See OMS card. 
+
 function getCard() {
   //Get all cards for the Trello board.
   Trello.get("boards/59166d6e65974e2250d8c1c3/cards", function(cards) {
@@ -28,7 +31,7 @@ function getCard() {
           data: data,
           columns: [
               { title: "Name" },
-              { title: "Description" },
+              { title: "Description of Current Status" },
               { title: "Status" }
           ]
           //colors the status cell based on status text
