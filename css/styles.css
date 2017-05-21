@@ -1,0 +1,10 @@
+body {
+  /*font-family: 'Source Sans Pro', sans-serif;*/
+  position: relative;
+}
+
+#wrapper {
+  margin: 0 auto;
+  /*max-width: 1080px;*/
+  padding: 2em 5%;
+}
