@@ -2,8 +2,14 @@
 //TODO: Rename repo to something without Trello in it (TrellStats, System Status)
 
 function getCard() {
+  //set the boardID (Option 1) by getting the ID from an api call to retrieve Board ID and add between boards/ and /cards
+  //const boardID = "boards/59166d6e65974e2250d8c1c3/cards"
+
+  //set the boardID (Option 2) by taking the link to the board in Trello board settings, use the last part of the link, and add between boards/ and /cards. 
+  const boardID = "boards/lEGovC5r/cards";
+
   //Get all cards for the Trello board.
-  Trello.get("boards/59166d6e65974e2250d8c1c3/cards", function(cards) {
+  Trello.get(boardID, function(cards) {
     var data = [];
     var name = [];
     var desc = [];
