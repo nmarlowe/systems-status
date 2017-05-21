@@ -1,4 +1,3 @@
-//IDEA: Add links on each row to the Trello card using the returned ShortURL field
 //IDEA: Use checklists to show multiple open issues. See OMS card.
 //TODO: Rename repo to something without Trello in it (TrellStats, System Status)
 
@@ -9,13 +8,15 @@ function getCard() {
     var name = [];
     var desc = [];
     var label = [];
+    var cardLink = [];
 
     //Pull the name, description, and label fields from each card and save in data array.
     for (let i = 0; i < cards.length; i++) {
       name[i] = cards[i].name;
       desc[i] = cards[i].desc;
       label[i] = cards[i].labels[0].name;
-      data[i] = [name[i], desc[i], label[i]];
+      cardLink[i] = cards[i].url;
+      data[i] = [name[i], label[i], desc[i], cardLink[i]];
       //console.log(data);
     }
     //console.log(data);
@@ -26,18 +27,21 @@ function getCard() {
           paging: false,
           ordering: true,
           //order by status then name
-          orderFixed: [[2, "asc"], [0, "asc"]],
+          orderFixed: [[1, "asc"], [0, "asc"]],
           info: false,
           searching: false,
           data: data,
           columns: [
               { title: "Name" },
+              { title: "Status" },
               { title: "Description of Current Status" },
-              { title: "Status" }
+              { title: "More Information", data: function(data, type, row, meta){
+                return '<a href=' + data[3] + '>' + 'See More' + '</a>';
+              }}
           ]
           //colors the status cell based on status text
           ,"columnDefs": [ {
-              "targets": 2,
+              "targets": 1,
               "createdCell": function (td, cellData, rowData, row, col) {
                 if ( cellData === "Down" ) {
                   $(td).css('background-color', 'pink')
