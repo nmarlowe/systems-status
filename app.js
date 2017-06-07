@@ -1,37 +1,23 @@
 
-//sets API endpoints for board, cards, and labels from Trello board URL
-//const boardURL = "https://trello.com/b/lEGovC5r"
-//const boardURL;
-//const config = (require(Config));
+var boardID, boardEndpoint, cardsEndpoint, labelsEndpoint, greenLabel, yellowLabel, redLabel, blueLabel;
+
 var configData = "";
 function loadConfigFile() {
   $.getJSON("config.json", function(config) {
-      var boardID = config.boardID;
-      var boardEndpoint = config.boardEndpoint;
-      var cardsEndpoint = config.cardsEndpoint;
-      var labelsEndpoint = config.labelsEndpoint;
-      var greenLabel = config.green;
-      var yellowLabel = config.yellow;
-      var redLabel = config.red;
-      var blueLabel = config.blue;
 
-      init();
-  })
+    //sets API endpoints for board, cards, and labels from Trello board URL
+    boardID = config.boardURL.substring(config.boardURL.lastIndexOf("/") + 1);
+    boardEndpoint = "boards/" + boardID;
+    cardsEndpoint = boardEndpoint + "/cards";
+    labelsEndpoint = boardEndpoint + "/labels";
+    greenLabel = config.green;
+    yellowLabel = config.yellow;
+    redLabel = config.red;
+    blueLabel = config.blue;
+
+    getBoard();
+  });
 }
-
-function init() {
-  console.log("Config " + configData);
-}
-
-loadConfigFile();
-
-
-//const boardURL = Config.boardURL;
-const boardID = boardURL.substring(boardURL.lastIndexOf("/") + 1);
-const boardEndpoint = "boards/" + boardID;
-const cardsEndpoint = boardEndpoint + "/cards";
-const labelsEndpoint = boardEndpoint + "/labels";
-
 //get board name and active labels
 function getBoard() {
   Trello.get(boardEndpoint, function(board) {
@@ -56,7 +42,7 @@ function getBoard() {
 
 function getCard() {
 
-  //label constants
+  //label variables
   var down = "Down";
   var nonCritical = "Non-Critical";
   var testing = "Testing";
@@ -122,4 +108,6 @@ function getCard() {
   });
 };
 
-getBoard();
+loadConfigFile();
+
+//TODO: Use board labels to set color and status 

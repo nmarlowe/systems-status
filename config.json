@@ -1,9 +1,5 @@
 {
   "boardURL": "https://trello.com/b/lEGovC5r",
-  "boardID": "boardURL.substring(boardURL.lastIndexOf('/') + 1)",
-  "boardEndpoint": "boards/ + boardID",
-  "cardsEndpoint": "boardEndpoint + '/cards'",
-  "labelsEndpoint": "boardEndpoint + '/labels'",
   "green": "#e7ffe7",
   "yellow": "#ffffbf",
   "red": "#ffc0cb",
