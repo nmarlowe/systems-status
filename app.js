@@ -1,11 +1,20 @@
 
 //sets API endpoints for board, cards, and labels from Trello board URL
-const boardURL = "https://trello.com/b/lEGovC5r"
+//const boardURL = "https://trello.com/b/lEGovC5r"
+//const boardURL;
 //const config = (require(Config));
 var configData = "";
 function loadConfigFile() {
-  $.getJSON("./config.json", function(config) {
-      const configData = config.boardURL;
+  $.getJSON("config.json", function(config) {
+      var boardID = config.boardID;
+      var boardEndpoint = config.boardEndpoint;
+      var cardsEndpoint = config.cardsEndpoint;
+      var labelsEndpoint = config.labelsEndpoint;
+      var greenLabel = config.green;
+      var yellowLabel = config.yellow;
+      var redLabel = config.red;
+      var blueLabel = config.blue;
+
       init();
   })
 }
@@ -13,6 +22,9 @@ function loadConfigFile() {
 function init() {
   console.log("Config " + configData);
 }
+
+loadConfigFile();
+
 
 //const boardURL = Config.boardURL;
 const boardID = boardURL.substring(boardURL.lastIndexOf("/") + 1);
