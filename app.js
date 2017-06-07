@@ -1,6 +1,20 @@
 
 //sets API endpoints for board, cards, and labels from Trello board URL
 const boardURL = "https://trello.com/b/lEGovC5r"
+//const config = (require(Config));
+var configData = "";
+function loadConfigFile() {
+  $.getJSON("./config.json", function(config) {
+      const configData = config.boardURL;
+      init();
+  })
+}
+
+function init() {
+  console.log("Config " + configData);
+}
+
+//const boardURL = Config.boardURL;
 const boardID = boardURL.substring(boardURL.lastIndexOf("/") + 1);
 const boardEndpoint = "boards/" + boardID;
 const cardsEndpoint = boardEndpoint + "/cards";
