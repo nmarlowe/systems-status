@@ -1,12 +1,34 @@
-//IDEA: Use checklists to show multiple open issues. See OMS card.
-//IDEA: GET board name and use in Heading. <Boardname> dashboard
+
+//sets API endpoints for board, cards, and labels from Trello board URL
+const boardURL = "https://trello.com/b/lEGovC5r"
+const boardID = boardURL.substring(boardURL.lastIndexOf("/") + 1);
+const boardEndpoint = "boards/" + boardID;
+const cardsEndpoint = boardEndpoint + "/cards";
+const labelsEndpoint = boardEndpoint + "/labels";
+
+//get board name and active labels
+function getBoard() {
+  Trello.get(boardEndpoint, function(board) {
+    var boardName = board.name + " Dashboard";
+    document.getElementById('board-name').innerHTML = boardName;
+  });
+
+  Trello.get(labelsEndpoint, function(labels) {
+    var labelCombo = [];
+    var labelName = [];
+    var labelColor = [];
+
+    for (let i = 0; i < labels.length; i++) {
+      labelName[i] = labels[i].name;
+      labelColor[i] = labels[i].color;
+      labelCombo[i] = [labelName[i], labelColor[i]];
+    }
+  });
+
+  getCard();
+}
 
 function getCard() {
-  //set the boardID (Option 1) by getting the ID from an api call to retrieve Board ID and add between boards/ and /cards
-  //const boardID = "boards/59166d6e65974e2250d8c1c3/cards"
-
-  //set the boardID (Option 2) by taking the link to the board in Trello board settings, use the last part of the link, and add between boards/ and /cards.
-  const boardID = "boards/lEGovC5r/cards";
 
   //label constants
   var down = "Down";
@@ -14,7 +36,7 @@ function getCard() {
   var testing = "Testing";
 
   //Get all cards for the Trello board.
-  Trello.get(boardID, function(cards) {
+  Trello.get(cardsEndpoint, function(cards) {
     var data = [];
     var name = [];
     var desc = [];
@@ -74,4 +96,4 @@ function getCard() {
   });
 };
 
-getCard();
+getBoard();
