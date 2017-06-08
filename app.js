@@ -1,7 +1,10 @@
 
 var boardID, boardEndpoint, cardsEndpoint, labelsEndpoint, greenLabel, yellowLabel, redLabel, blueLabel;
+var labelCombo = [];
+var labelName = [];
+var labelColor = [];
+//var configData = "";
 
-var configData = "";
 function loadConfigFile() {
   $.getJSON("config.json", function(config) {
 
@@ -26,9 +29,6 @@ function getBoard() {
   });
 
   Trello.get(labelsEndpoint, function(labels) {
-    var labelCombo = [];
-    var labelName = [];
-    var labelColor = [];
 
     for (let i = 0; i < labels.length; i++) {
       labelName[i] = labels[i].name;
@@ -110,4 +110,4 @@ function getCard() {
 
 loadConfigFile();
 
-//TODO: Use board labels to set color and status 
+//IDEA: Pull label names and colors from Trello to use in place of hard-coded values.
