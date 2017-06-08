@@ -115,7 +115,6 @@ function getCard() {
 };
 
 loadConfigFile();
-console.log("#0000ff" + "#add7e7");
 
 
 //IDEA: Can I force the string green to be changed to #e7ffe7?
