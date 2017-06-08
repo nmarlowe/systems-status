@@ -1,4 +1,9 @@
 
+const translateGreen = "#e7ffe7";
+const translateReg = "#ffc0cb";
+const translateYelllow = "#ffffbf";
+const translateBlue = "#add8e6";
+
 var boardID, boardEndpoint, cardsEndpoint, labelsEndpoint, greenLabel, yellowLabel, redLabel, blueLabel;
 var labelCombo = [];
 var labelName = [];
@@ -33,6 +38,7 @@ function getBoard() {
     for (let i = 0; i < labels.length; i++) {
       labelName[i] = labels[i].name;
       labelColor[i] = labels[i].color;
+      //TODO: If color === green then color = translateGreen
       labelCombo[i] = [labelName[i], labelColor[i]];
     }
   });
@@ -109,5 +115,7 @@ function getCard() {
 };
 
 loadConfigFile();
+console.log("#0000ff" + "#add7e7");
 
-//IDEA: Pull label names and colors from Trello to use in place of hard-coded values.
+
+//IDEA: Can I force the string green to be changed to #e7ffe7?
