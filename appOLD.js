@@ -1,3 +1,4 @@
+
 const translateGreen = "#e7ffe7";
 const translateReg = "#ffc0cb";
 const translateYelllow = "#ffffbf";
@@ -32,15 +33,15 @@ function getBoard() {
     document.getElementById('board-name').innerHTML = boardName;
   });
 
-  Trello.get(labelsEndpoint, function(labels) {
-
-    for (let i = 0; i < labels.length; i++) {
-      labelName[i] = labels[i].name;
-      labelColor[i] = labels[i].color;
-      //TODO: If color === green then color = translateGreen
-      labelCombo[i] = [labelName[i], labelColor[i]];
-    }
-  });
+  // Trello.get(labelsEndpoint, function(labels) {
+  //
+  //   for (let i = 0; i < labels.length; i++) {
+  //     labelName[i] = labels[i].name;
+  //     labelColor[i] = labels[i].color;
+  //     //TODO: If color === green then color = translateGreen
+  //     labelCombo[i] = [labelName[i], labelColor[i]];
+  //   }
+  // });
 
   getCard();
 }
@@ -70,9 +71,11 @@ function getCard() {
       } else {
         desc[i] = cards[i].desc;
       };
-      label[i] = cards[i].labels[0].name;
+      //labelName[i] = cards[i].labels[0].name;
+      //labelColor[i] = cards[i].labels[0].color;
       cardLink[i] = cards[i].url;
-      data[i] = [name[i], label[i], desc[i], cardLink[i]];
+      data[i] = [name[i], desc[i], cardLink[i]];
+      //data[i] = [name[i], labelName[i], labelColor[i], desc[i], cardLink[i]];
     }
 
     //Build DataTable on page load from the data array
@@ -100,11 +103,11 @@ function getCard() {
                 if ( cellData === down ) {
                   $(td).css('background-color', '#ffc0cb')
                 } else if (cellData === nonCritical){
-                  $(td).css('background-color', '#ffffbf')
+                  $(td).css('background-color', yellowLabel)
                 } else if (cellData === testing){
-                  $(td).css('background-color', '#add8e6')
+                  $(td).css('background-color', blueLabel)
                 } else {
-                  $(td).css('background-color', '#e7ffe7')
+                  $(td).css('background-color', greenLabel)
                 }
               }
             }]
@@ -114,7 +117,6 @@ function getCard() {
 };
 
 loadConfigFile();
-console.log("#0000ff" + "#add7e7");
 
 
 //IDEA: Can I force the string green to be changed to #e7ffe7?
