@@ -33,15 +33,15 @@ function getBoard() {
     document.getElementById('board-name').innerHTML = boardName;
   });
 
-  Trello.get(labelsEndpoint, function(labels) {
-
-    for (let i = 0; i < labels.length; i++) {
-      labelName[i] = labels[i].name;
-      labelColor[i] = labels[i].color;
-      //TODO: If color === green then color = translateGreen
-      labelCombo[i] = [labelName[i], labelColor[i]];
-    }
-  });
+  // Trello.get(labelsEndpoint, function(labels) {
+  //
+  //   for (let i = 0; i < labels.length; i++) {
+  //     labelName[i] = labels[i].name;
+  //     labelColor[i] = labels[i].color;
+  //     //TODO: If color === green then color = translateGreen
+  //     labelCombo[i] = [labelName[i], labelColor[i]];
+  //   }
+  // });
 
   getCard();
 }
@@ -71,9 +71,10 @@ function getCard() {
       } else {
         desc[i] = cards[i].desc;
       };
-      label[i] = cards[i].labels[0].name;
+      labelName[i] = cards[i].labels[0].name;
+      labelColor[i] = cards[i].labels[0].color;
       cardLink[i] = cards[i].url;
-      data[i] = [name[i], label[i], desc[i], cardLink[i]];
+      data[i] = [name[i], labelName[i], labelColor[i], desc[i], cardLink[i]];
     }
 
     //Build DataTable on page load from the data array
