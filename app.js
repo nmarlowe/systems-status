@@ -4,10 +4,9 @@ const translateYelllow = "#ffffbf";
 const translateBlue = "#add8e6";
 
 var boardID, boardEndpoint, cardsEndpoint, labelsEndpoint, greenLabel, yellowLabel, redLabel, blueLabel;
-var labelCombo = [];
-var labelName = [];
-var labelColor = [];
-//var configData = "";
+// var labelCombo = [];
+// var labelName = [];
+// var labelColor = [];
 
 function loadConfigFile() {
   $.getJSON("config.json", function(config) {
@@ -32,15 +31,15 @@ function getBoard() {
     document.getElementById('board-name').innerHTML = boardName;
   });
 
-  Trello.get(labelsEndpoint, function(labels) {
-
-    for (let i = 0; i < labels.length; i++) {
-      labelName[i] = labels[i].name;
-      labelColor[i] = labels[i].color;
-      //TODO: If color === green then color = translateGreen
-      labelCombo[i] = [labelName[i], labelColor[i]];
-    }
-  });
+  // Trello.get(labelsEndpoint, function(labels) {
+  //
+  //   for (let i = 0; i < labels.length; i++) {
+  //     labelName[i] = labels[i].name;
+  //     labelColor[i] = labels[i].color;
+  //     //TODO: If color === green then color = translateGreen
+  //     labelCombo[i] = [labelName[i], labelColor[i]];
+  //   }
+  // });
 
   getCard();
 }
@@ -60,6 +59,7 @@ function getCard() {
     var label = [];
     var cardLink = [];
     var checkItems = [];
+    var labelColor = [];
 
     //Pull the name, description, and label fields from each card and save in data array.
     for (let i = 0; i < cards.length; i++) {
@@ -93,18 +93,18 @@ function getCard() {
                 return '<a href=' + data[3] + '>' + 'See More' + '</a>';
               }}
           ]
-          //colors the status cell based on status text
+          //color the status cell based on status text
           ,"columnDefs": [ {
               "targets": 1,
-              "createdCell": function (td, cellData, rowData, row, col) {
+              "createdCell": function(td, cellData, rowData, row, col) {
                 if ( cellData === down ) {
-                  $(td).css('background-color', '#ffc0cb')
+                  $(td).css('background-color', redLabel)
                 } else if (cellData === nonCritical){
-                  $(td).css('background-color', '#ffffbf')
+                  $(td).css('background-color', yellowLabel)
                 } else if (cellData === testing){
-                  $(td).css('background-color', '#add8e6')
+                  $(td).css('background-color', blueLabel)
                 } else {
-                  $(td).css('background-color', '#e7ffe7')
+                  $(td).css('background-color', greenLabel)
                 }
               }
             }]
@@ -114,7 +114,3 @@ function getCard() {
 };
 
 loadConfigFile();
-console.log("#0000ff" + "#add7e7");
-
-
-//IDEA: Can I force the string green to be changed to #e7ffe7?
