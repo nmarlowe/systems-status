@@ -69,11 +69,14 @@ function getCard() {
     for (let i = 0; i < cards.length; i++) {
       name[i] = cards[i].name;
       checkItems[i] = cards[i].badges.checkItems;
-      if (checkItems[i] > 0) {
+      if (checkItems[i] > 0 && cards[i].desc === "") {
         desc[i] = "Multiple Issues, Click See More";
+      } else if (cards[i].desc === "") {
+        desc[i] = "No Current Issues";
       } else {
         desc[i] = cards[i].desc;
       };
+
       label[i] = cards[i].labels[0].name;
       cardLink[i] = cards[i].url;
       data[i] = [name[i], label[i], desc[i], cardLink[i]];
