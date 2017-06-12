@@ -3,5 +3,9 @@
   "green": "#e7ffe7",
   "yellow": "#ffffbf",
   "red": "#ffc0cb",
-  "blue": "#add8e6"
+  "blue": "#add8e6",
+  "down": "Down",
+  "noncritical": "Non-Critical",
+  "testing": "Testing",
+  "normal": "Normal"
 }

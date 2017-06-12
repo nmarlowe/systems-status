@@ -3,7 +3,7 @@ const translateReg = "#ffc0cb";
 const translateYelllow = "#ffffbf";
 const translateBlue = "#add8e6";
 
-var boardID, boardEndpoint, cardsEndpoint, labelsEndpoint, greenLabel, yellowLabel, redLabel, blueLabel;
+var boardID, boardEndpoint, cardsEndpoint, labelsEndpoint, greenLabel, yellowLabel, redLabel, blueLabel, down, noncritical, testing, normal;
 // var labelCombo = [];
 // var labelName = [];
 // var labelColor = [];
@@ -20,6 +20,10 @@ function loadConfigFile() {
     yellowLabel = config.yellow;
     redLabel = config.red;
     blueLabel = config.blue;
+    down = config.down;
+    noncritical = config.noncritical;
+    testing = config.testing;
+    normal = config.normal;
 
     getBoard();
   });
@@ -47,9 +51,9 @@ function getBoard() {
 function getCard() {
 
   //label variables
-  var down = "Down";
-  var nonCritical = "Non-Critical";
-  var testing = "Testing";
+  // var down = "Down";
+  // var nonCritical = "Non-Critical";
+  // var testing = "Testing";
 
   //Get all cards for the Trello board.
   Trello.get(cardsEndpoint, function(cards) {
@@ -99,7 +103,7 @@ function getCard() {
               "createdCell": function(td, cellData, rowData, row, col) {
                 if ( cellData === down ) {
                   $(td).css('background-color', redLabel)
-                } else if (cellData === nonCritical){
+                } else if (cellData === noncritical){
                   $(td).css('background-color', yellowLabel)
                 } else if (cellData === testing){
                   $(td).css('background-color', blueLabel)
