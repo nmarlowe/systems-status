@@ -3,7 +3,7 @@ const translateReg = "#ffc0cb";
 const translateYelllow = "#ffffbf";
 const translateBlue = "#add8e6";
 
-var boardID, boardEndpoint, cardsEndpoint, labelsEndpoint, greenLabel, yellowLabel, redLabel, blueLabel, down, noncritical, testing, normal;
+var boardID, boardEndpoint, cardsEndpoint, labelsEndpoint, greenLabel, yellowLabel, redLabel, blueLabel, purpleLabel, down, noncritical, testing, development, normal;
 // var labelCombo = [];
 // var labelName = [];
 // var labelColor = [];
@@ -20,9 +20,11 @@ function loadConfigFile() {
     yellowLabel = config.yellow;
     redLabel = config.red;
     blueLabel = config.blue;
+    purpleLabel = config.purple;
     down = config.down;
     noncritical = config.noncritical;
     testing = config.testing;
+    development = config.development;
     normal = config.normal;
 
     getBoard();
@@ -110,6 +112,8 @@ function getCard() {
                   $(td).css('background-color', yellowLabel)
                 } else if (cellData === testing){
                   $(td).css('background-color', blueLabel)
+                } else if (cellData === development){
+                  $(td).css('background-color', purpleLabel)
                 } else {
                   $(td).css('background-color', greenLabel)
                 }

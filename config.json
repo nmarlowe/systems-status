@@ -1,11 +1,13 @@
 {
-  "boardURL": "https://trello.com/b/lEGovC5r",
+  "boardURL": "https://trello.com/b/V30D6R6L",
   "green": "#e7ffe7",
   "yellow": "#ffffbf",
   "red": "#ffc0cb",
   "blue": "#add8e6",
+  "purple": "#d79bdb",
   "down": "Down",
   "noncritical": "Non-Critical",
   "testing": "Testing",
+  "development": "In Development",
   "normal": "Normal"
 }
