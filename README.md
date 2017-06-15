@@ -52,6 +52,8 @@ While I built this as an IT systems dashboard, I'm sure there are other uses tha
 
 * Read labels from Trello board to eliminate hard coding in the ```config.json``` and ```app.js``` files.
 
+* Improve responsiveness on mobile.
+
 ## Contribute
 
 PRs accepted.
