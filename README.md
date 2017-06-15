@@ -37,7 +37,7 @@ This project uses a public Trello board as its backend.
 
 5. Deploy the site files to your server.
 
-6. Copy the URL for you board from Trello (see below.)
+6. Copy the URL for your board from Trello (see below.)
 
  ![Screenshot](./img/findboard.gif)
 
